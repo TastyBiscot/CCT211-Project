@@ -3,9 +3,9 @@ from tkinter import *
 
 ex1 = tkinter.Tk()
 ex1.title("EX1")
-label1 = tkinter.Label(ex1, text = "A",bg = "orange").pack(side = "left",fill=BOTH,expand=YES,)
-label2 = tkinter.Label(ex1, text = "B",bg = "red").pack(side = "left",fill=BOTH,expand=YES)
-label3 = tkinter.Label(ex1, text = "C",bg = "grey").pack(side = "left",fill=BOTH,expand=YES,)
+label1 = tkinter.Label(ex1, text = "A",bg = "green").pack(side = "left",fill=BOTH,expand=YES,)
+label2 = tkinter.Label(ex1, text = "B",bg = "green").pack(side = "left",fill=BOTH,expand=YES)
+label3 = tkinter.Label(ex1, text = "C",bg = "green").pack(side = "left",fill=BOTH,expand=YES,)
 
 ex2 = tkinter.Tk()
 ex2.title("EX2")
