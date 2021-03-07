@@ -3,14 +3,10 @@ from tkinter import *
 
 ex1 = tkinter.Tk()
 ex1.title("EX1")
-<<<<<<< HEAD
+
 label1 = tkinter.Label(ex1, text = "A",bg = "green").pack(side = "left",fill=BOTH,expand=YES,)
 label2 = tkinter.Label(ex1, text = "B",bg = "green").pack(side = "left",fill=BOTH,expand=YES)
 label3 = tkinter.Label(ex1, text = "C",bg = "green").pack(side = "left",fill=BOTH,expand=YES,)
-=======
-label1 = tkinter.Label(ex1, text = "A",bg = "Red").pack(side = "left",fill=BOTH,expand=YES,)
-label3 = tkinter.Label(ex1, text = "C",bg = "blue").pack(side = "left",fill=BOTH,expand=YES,)
->>>>>>> parent of c7b593d (Update Lab.py)
 
 ex2 = tkinter.Tk()
 ex2.title("EX2")
