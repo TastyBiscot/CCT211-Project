@@ -41,7 +41,8 @@ class DataRecordForm(tk.Frame): #subclass Frame
             input_var=tk.IntVar(),
             input_args={"values": list(range(1, 5))}
         )
-        self.inputs['Seated'].grid(row=1, column=1)        
+        self.inputs['Seated'].grid(row=1, column=1)
+             
         
         recordinfo.grid(row=0, column=0, sticky=(tk.W + tk.E))
         
@@ -186,7 +187,9 @@ class Application(tk.Tk):
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         self.title("Food Data Enrty Application")
-        #self.geometry("800x600")
+        self.geometry("1200x900")
+        self.s = ttk.Style()
+        self.s.theme_use("clam")        
         self.resizable(width=False,height=False)
         
         ttk.Label(self,text= "Food Order Form",font = ("TkDefaultFont", 16)).grid(row=0)
