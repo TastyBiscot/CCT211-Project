@@ -1,0 +1,6 @@
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3,Allergies,Notes,Order Name
+28,8:00,Anna,3,3,Medium,Chicago,Little,Bacon,Pepper,Mushroom,FALSE,"
+",Medium Chicago Pizza
+28,8:15,Julia,5,4,Large,Pan,Normal,Pepperoni ,Mushroom,None,FALSE,"
+",Large Pan Pizza
+28,8:45,Anna,4,2,Small,Thin,Extra,None,None,None,TRUE,,Small Thin Pizza
