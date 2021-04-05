@@ -27,9 +27,9 @@ ax3.set_xlabel('Table')
 ax3.set_title('Table VS Time')
 """
 LARGE_FONT= ("Verdana", 12)
+H1_FONT = ("Verdana", 24)
 
-
-class SeaofBTCapp(tk.Tk):
+class FrameMoving(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         
@@ -44,7 +44,7 @@ class SeaofBTCapp(tk.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, PageOne):
+        for F in (StartPage, PageOne, PageTwo):
 
             frame = F(container, self)
 
@@ -64,13 +64,10 @@ class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent,bg = 'blue')
-        label = tk.Label(self, text="Time VS Seated Page!", font=LARGE_FONT)
-        label.pack(pady=10,padx=10)
+        label = tk.Label(self, text="Manager Page", font=H1_FONT)
+        label.pack(pady=50,padx=10)
         
-       
-        
-        
-        
+        """
         figure2 = plt.Figure(figsize=(5,4), dpi=100)
         ax2 = figure2.add_subplot(111)
         ax2.scatter(df2['Seated'],df2['Time'], color = 'g')
@@ -79,10 +76,22 @@ class StartPage(tk.Frame):
         ax2.legend(['Seated']) 
         ax2.set_xlabel('Table')
         ax2.set_title('Time VS Seated')
-        
-        button = tk.Button(self, text="Visit Table VS Time",
+        """
+        button = tk.Button(self, text="Visit Table VS Time",width=20,
                             command=lambda: controller.show_frame(PageOne))
-        button.pack()        
+        button.pack(pady=10,padx=10) 
+        
+        button = tk.Button(self, text="Visit Seated VS Size",width=20,
+                            command=lambda: controller.show_frame(PageOne))
+        button.pack(pady=10,padx=10)   
+        
+        button = tk.Button(self, text="Visit favourite Toppings",width=20,
+                            command=lambda: controller.show_frame(PageOne))
+        button.pack(pady=10,padx=10)   
+        
+        button = tk.Button(self, text="Employee control",width=20,
+                            command=lambda: controller.show_frame(PageTwo))
+        button.pack(pady=10,padx=10)           
         
 
 
@@ -103,7 +112,21 @@ class PageOne(tk.Frame):
         ax3.set_title('Table VS Time')
         
         
-        button1 = tk.Button(self, text="Visit Seated VS Time",
+        button1 = tk.Button(self, text="Return <-",
+                            command=lambda: controller.show_frame(StartPage))
+        button1.pack()
+
+class PageTwo(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg = 'blue')
+        label = tk.Label(self, text="Employee Managment", font=LARGE_FONT)
+        label.pack(pady=10,padx=10)
+        
+
+        
+        
+        button1 = tk.Button(self, text="Return <-",
                             command=lambda: controller.show_frame(StartPage))
         button1.pack()
 
@@ -117,5 +140,5 @@ class PageOne(tk.Frame):
         
 
 
-app = SeaofBTCapp()
+app = FrameMoving()
 app.mainloop()
