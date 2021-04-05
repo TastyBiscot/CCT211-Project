@@ -2,6 +2,7 @@ from tkinter import *
 import csv
 
 class Chef:
+    
     def __init__(self):
         self.root = Tk()
         self.root.geometry('1200x900')
@@ -21,7 +22,7 @@ class Chef:
         
 
         #Orders Labels and Buttons
-        self.label_order1 = Label(self.root, text = self.order_name, width = 25, font = 'Times 20 bold', bg = 'red', fg = 'white')
+        self.label_order1 = Label(self.root, text = "pizza pie", width = 25, font = 'Times 20 bold', bg = 'red', fg = 'white')
         self.label_order1.place(x = 200, y = 192)
         
         self.button_order1 = Button(self.root, text = 'Start', width = 12, font = 'Times 15 bold', bg='yellow', fg = 'green', command = self.start_command1)
