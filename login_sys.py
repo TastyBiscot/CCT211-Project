@@ -21,8 +21,7 @@ class Login(Frame):
 
 
 class LoginModel:
-    def __init__(self, gui, employee):
-        self.gui = gui
+    def __init__(self, employee):
         self.logins = {}
         self._get_login(employee)
 
