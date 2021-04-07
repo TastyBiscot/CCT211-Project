@@ -11,20 +11,23 @@ class DataRecordForm(tk.Frame): #subclass Frame
     def __init__(self,parent,*args,**kwargs):
         super().__init__(parent,*args,**kwargs) # init the underlying frame object
         self.inputs = {} #dict to track input widgets
-        
         recordinfo = tk.LabelFrame(self,text = "Table Information") #frame for recordinfo
                                    
         self.inputs['Date'] = LabelInput(recordinfo,"Date",input_var=tk.StringVar())
         self.inputs['Date'].grid(row=0,column=0)
+        self.inputs['Date'].columnconfigure(0,weight=1)
         
         self.inputs['Time'] = LabelInput(recordinfo, "Time",input_class = ttk.Combobox, input_var = tk.StringVar(), input_args={"values":["8:00","12:00","16:00","20:00"]})
         self.inputs['Time'].grid(row = 0, column = 1)
+        self.inputs['Time'].columnconfigure(0,weight=1)
         
         self.inputs['Server'] = LabelInput(
             recordinfo, "Server",
             input_var=tk.StringVar()
         )
         self.inputs['Server'].grid(row=0, column=2)
+        self.inputs['Server'].columnconfigure(0,weight=1)
+        
 
        # line 2
         self.inputs['Table'] = LabelInput(
@@ -34,6 +37,7 @@ class DataRecordForm(tk.Frame): #subclass Frame
             input_args={"values": ["1", "2", "3", "4", "5","6","7","8"]}
         )
         self.inputs['Table'].grid(row=1, column=0)
+        self.inputs['Table'].columnconfigure(0,weight=1)
         
         self.inputs['Seated'] = LabelInput(
             recordinfo, "Seated",
@@ -42,9 +46,11 @@ class DataRecordForm(tk.Frame): #subclass Frame
             input_args={"values": list(range(1, 5))}
         )
         self.inputs['Seated'].grid(row=1, column=1)
+        self.inputs['Seated'].columnconfigure(0,weight=1)
              
         
         recordinfo.grid(row=0, column=0, sticky=(tk.W + tk.E))
+        recordinfo.columnconfigure(0,weight=1)
         
         enviromentinfo = tk.LabelFrame(self,text="Order Info")
         
@@ -57,6 +63,7 @@ class DataRecordForm(tk.Frame): #subclass Frame
         
         
         self.inputs['Size'].grid(row=0,column = 0)
+        self.inputs['Size'].columnconfigure(0,weight=1)
         
         self.inputs['Crust'] = LabelInput(
             enviromentinfo, "Crust",
@@ -65,7 +72,8 @@ class DataRecordForm(tk.Frame): #subclass Frame
             input_args={"values": ["New York", "Chicago", "Cheese Filled"]}
         )        
         
-        self.inputs['Crust'].grid(row=0,column = 1) 
+        self.inputs['Crust'].grid(row=0,column = 1)
+        self.inputs['Crust'].columnconfigure(0,weight=1)
         
         self.inputs['Sauce'] = LabelInput(
             enviromentinfo, "Sauce",
@@ -73,7 +81,8 @@ class DataRecordForm(tk.Frame): #subclass Frame
             input_var=tk.StringVar(),
             input_args={"values": ["None", "Little", "Normal","Extra"]}
         )        
-        self.inputs['Sauce'].grid(row=0,column = 2)  
+        self.inputs['Sauce'].grid(row=0,column = 2)
+        self.inputs['Sauce'].columnconfigure(0,weight=1)
         
         self.inputs['Topping 1'] = LabelInput(
             enviromentinfo, "Topping 1",
@@ -82,6 +91,7 @@ class DataRecordForm(tk.Frame): #subclass Frame
             input_args={"values": ["Pepperoni", "Sausage", "Bacon","Pepper","Pineapple","Onion","Mushroom","Spinach"]}
         )        
         self.inputs['Topping 1'].grid(row=1,column = 0)
+        self.inputs['Topping 1'].columnconfigure(0,weight=1)
         
         self.inputs['Topping 2'] = LabelInput(
             enviromentinfo, "Topping 2",
@@ -90,6 +100,7 @@ class DataRecordForm(tk.Frame): #subclass Frame
             input_args={"values": ["Pepperoni", "Sausage", "Bacon","Pepper","Pineapple","Onion","Mushroom","Spinach"]}
         )        
         self.inputs['Topping 2'].grid(row=1,column = 1)
+        self.inputs['Topping 2'].columnconfigure(0,weight=1)
         
         self.inputs['Topping 3'] = LabelInput(
             enviromentinfo, "Topping 3",
@@ -98,16 +109,21 @@ class DataRecordForm(tk.Frame): #subclass Frame
             input_args={"values": ["Pepperoni", "Sausage", "Bacon","Pepper","Pineapple","Onion","Mushroom","Spinach"]}
         )        
         self.inputs['Topping 3'].grid(row=1,column = 2)        
-        
+        self.inputs['Topping 3'].columnconfigure(0,weight=1)
           
         
         self.inputs['Allergies'] = LabelInput(enviromentinfo,"Allergies", input_class=ttk.Checkbutton,input_var = tk.BooleanVar())
         self.inputs['Allergies'].grid(row=2,column = 0,columnspan=3)
+        self.inputs['Allergies'].columnconfigure(0,weight=1)
         
         enviromentinfo.grid(row=2, column=0, sticky="we")
+        enviromentinfo.columnconfigure(0,weight=1)
             
         self.inputs['Notes'] = LabelInput(self,"notes", input_class = tk.Text, input_args={"width":75,"height": 10})
-        self.inputs['Notes'].grid(sticky=tk.W,row=3,column=0)
+        self.inputs['Notes'].grid(sticky=(tk.W+tk.E),row=3,column=0)
+        self.inputs['Notes'].columnconfigure(0,weight=1)
+        
+        
         
         
         self.reset() #remove any tk default values at start
@@ -139,7 +155,9 @@ class LabelInput(tk.Frame):
         else:
             self.label = ttk.Label(self, text=label, **label_args)
             self.label.grid(row=0, column=0, sticky=(tk.W + tk.E))
+            #self.label.columnconfigure(0,weight=1)
             input_args["textvariable"] = input_var
+            
             
         #call inputclass passed into constructor, with input_args dictionary to keyword arguments.
         self.input = input_class(self, **input_args)
@@ -192,18 +210,19 @@ class Application(tk.Tk):
         self.s.theme_use("clam")        
         self.resizable(width=False,height=False)
         
-        ttk.Label(self,text= "Food Order Form",font = ("TkDefaultFont", 16)).grid(row=0)
+        ttk.Label(self,text= "Food Order Form",font = ("TkDefaultFont", 16)).grid(row=0,sticky=(tk.W+tk.E,tk.N,tk.S))
         
         self.recordform = DataRecordForm(self)
         
-        self.recordform.grid(row=1,padx=10)
+        self.recordform.grid(row=1,sticky=(tk.W+tk.E,tk.N,tk.S), padx=10)
         self.savebutton = ttk.Button(self,text = "Save",command = self.on_save)
         self.savebutton.grid(sticky=tk.E, row=2,padx=10)
         
         self.status = tk.StringVar()
         self.statusbar = ttk.Label(self,textvariable=self.status)
         self.statusbar.grid(sticky=(tk.W+tk.E),row=3,padx=10)
-        #self.columnconfigure(0,weight=1)
+        self.columnconfigure(0,weight=1)
+        self.recordform.columnconfigure(0,weight=1)
         
         self.records_saved = 0
         

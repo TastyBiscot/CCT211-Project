@@ -13,19 +13,7 @@ df2 = DataFrame(df,columns=['Seated','Time'])
 df3 = DataFrame(df,columns=['Table','Time'])
 
 print(df3)
-#df3.plot.scatter(  grid = True, figsize=(10,5), ylabel='Vaccinations by %', xlabel = 'Years', title = "time table" , x = 'Table', y='Time')
 
-
-"""
-figure3 = plt.Figure(figsize=(5,4), dpi=100)
-ax3 = figure3.add_subplot(111)
-ax3.scatter(df3['Table'],df3['Time'], color = 'g')
-scatter3 = FigureCanvasTkAgg(figure3, root) 
-scatter3.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
-ax3.legend(['Seated']) 
-ax3.set_xlabel('Table')
-ax3.set_title('Table VS Time')
-"""
 LARGE_FONT= ("Verdana", 12)
 H1_FONT = ("Verdana", 24)
 
@@ -44,7 +32,7 @@ class FrameMoving(tk.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, PageOne, PageTwo):
+        for F in (LoginPage, ManagerPage, EmployeePage,ServerPage,ChefPage,GraphPageOne):
 
             frame = F(container, self)
 
@@ -52,7 +40,7 @@ class FrameMoving(tk.Tk):
 
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame(StartPage)
+        self.show_frame(LoginPage)
 
     def show_frame(self, cont):
 
@@ -60,7 +48,28 @@ class FrameMoving(tk.Tk):
         frame.tkraise()
 
         
-class StartPage(tk.Frame):
+class LoginPage(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self,parent,bg = 'blue')
+        label = tk.Label(self, text="Login Page", font=H1_FONT)
+        label.pack(pady=50,padx=10)
+        
+       
+        button = tk.Button(self, text="Manager",width=20,
+                            command=lambda: controller.show_frame(ManagerPage))
+        button.pack(pady=10,padx=10) 
+        
+        button = tk.Button(self, text="Server",width=20,
+                            command=lambda: controller.show_frame(ServerPage))
+        button.pack(pady=10,padx=10)   
+        
+        button = tk.Button(self, text="Chef",width=20,
+                            command=lambda: controller.show_frame(ChefPage))
+        button.pack(pady=10,padx=10)   
+        
+        
+class ManagerPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent,bg = 'blue')
@@ -78,45 +87,26 @@ class StartPage(tk.Frame):
         ax2.set_title('Time VS Seated')
         """
         button = tk.Button(self, text="Visit Table VS Time",width=20,
-                            command=lambda: controller.show_frame(PageOne))
+                            command=lambda: controller.show_frame(GraphPageOne))
         button.pack(pady=10,padx=10) 
         
         button = tk.Button(self, text="Visit Seated VS Size",width=20,
-                            command=lambda: controller.show_frame(PageOne))
+                            command=lambda: controller.show_frame(GraphPageOne))
         button.pack(pady=10,padx=10)   
         
         button = tk.Button(self, text="Visit favourite Toppings",width=20,
-                            command=lambda: controller.show_frame(PageOne))
+                            command=lambda: controller.show_frame(GraphPageOne))
         button.pack(pady=10,padx=10)   
         
         button = tk.Button(self, text="Employee control",width=20,
-                            command=lambda: controller.show_frame(PageTwo))
+                            command=lambda: controller.show_frame(EmployeePage))
+        button.pack(pady=10,padx=10)    
+        
+        button = tk.Button(self, text="Log Out",width=20,
+                            command=lambda: controller.show_frame(LoginPage))
         button.pack(pady=10,padx=10)           
         
-
-
-class PageOne(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg = 'blue')
-        label = tk.Label(self, text="Table VS Time Page", font=LARGE_FONT)
-        label.pack(pady=10,padx=10)
-        
-        figure3 = plt.Figure(figsize=(5,4), dpi=100)
-        ax3 = figure3.add_subplot(111)
-        ax3.scatter(df3['Table'],df3['Time'], color = 'g')
-        scatter3 = FigureCanvasTkAgg(figure3, self) 
-        scatter3.get_tk_widget().pack(fill=tk.BOTH)
-        ax3.legend(['Seated']) 
-        ax3.set_xlabel('Table')
-        ax3.set_title('Table VS Time')
-        
-        
-        button1 = tk.Button(self, text="Return <-",
-                            command=lambda: controller.show_frame(StartPage))
-        button1.pack()
-
-class PageTwo(tk.Frame):
+class EmployeePage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg = 'blue')
@@ -127,8 +117,58 @@ class PageTwo(tk.Frame):
         
         
         button1 = tk.Button(self, text="Return <-",
-                            command=lambda: controller.show_frame(StartPage))
+                            command=lambda: controller.show_frame(ManagerPage))
         button1.pack()
+
+
+class GraphPageOne(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg = 'blue')
+        label = tk.Label(self, text="Table VS Time Page", font=LARGE_FONT)
+        label.pack(pady=10,padx=10)
+        
+        figure3 = plt.Figure(figsize=(5,4), dpi=100)
+        ax3 = figure3.add_subplot(111)
+        ax3.bar(df3['Table'],df3['Time'], color = 'g')
+        scatter3 = FigureCanvasTkAgg(figure3, self) 
+        scatter3.get_tk_widget().pack(fill=tk.BOTH)
+        ax3.legend(['Seated']) 
+        ax3.set_xlabel('Table')
+        ax3.set_title('Table VS Time')
+        
+        
+        button1 = tk.Button(self, text="Return <-",
+                            command=lambda: controller.show_frame(ManagerPage))
+        button1.pack(pady=10,padx=10)
+
+
+
+class ServerPage(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg = 'blue')
+        label = tk.Label(self, text="Server", font=LARGE_FONT)
+        label.pack(pady=10,padx=10)
+        
+        
+        button1 = tk.Button(self, text="Log Out",
+                            command=lambda: controller.show_frame(LoginPage))
+        button1.pack()
+        
+class ChefPage(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg = 'blue')
+        label = tk.Label(self, text="Kitchen", font=LARGE_FONT)
+        label.pack(pady=10,padx=10)
+        
+        
+        button1 = tk.Button(self, text="Log Out",
+                            command=lambda: controller.show_frame(LoginPage))
+        button1.pack()
+        
+        
 
      
         
