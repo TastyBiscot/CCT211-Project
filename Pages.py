@@ -1,8 +1,11 @@
 import tkinter as tk
+from tkinter import*
 import pandas as pd
 from pandas import DataFrame
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from login_sys import Login
+from server_log import Application
 
 df = pd.read_csv('All_Orders_2021-04-05.csv') #reads file stores into dataframe
 
@@ -23,7 +26,7 @@ class FrameMoving(tk.Tk):
         
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
-        self.geometry("640x480")
+        self.geometry("1200x900")
 
         container.pack(side="top", fill="both", expand = True)
 
@@ -52,10 +55,12 @@ class LoginPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent,bg = 'blue')
-        label = tk.Label(self, text="Login Page", font=H1_FONT)
+        label = tk.Label(self, text="Nicks Pizza", font=H1_FONT)
         label.pack(pady=50,padx=10)
         
-       
+        log = Login(self)
+        log.pack(expand=True, fill=BOTH)
+        
         button = tk.Button(self, text="Manager",width=20,
                             command=lambda: controller.show_frame(ManagerPage))
         button.pack(pady=10,padx=10) 
@@ -151,6 +156,8 @@ class ServerPage(tk.Frame):
         label = tk.Label(self, text="Server", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
         
+        app = Application(self)
+        app.pack(expand=True, fill=BOTH)        
         
         button1 = tk.Button(self, text="Log Out",
                             command=lambda: controller.show_frame(LoginPage))

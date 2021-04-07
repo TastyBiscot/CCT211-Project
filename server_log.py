@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import *
 from tkinter import ttk
 from datetime import datetime
 import os
@@ -199,16 +200,13 @@ class LabelInput(tk.Frame):
             self.input.insert(0, value)
     
         
-class Application(tk.Tk):
+class Application(tk.Frame):
     "hello world Main application"
     
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)
-        self.title("Food Data Enrty Application")
-        self.geometry("1200x900")
-        self.s = ttk.Style()
-        self.s.theme_use("clam")        
-        self.resizable(width=False,height=False)
+    def __init__(self, parent,*args,**kwargs):
+        tk.Frame.__init__(self,parent,*args,**kwargs)    
+        super().__init__(parent,*args,**kwargs)
+     
         
         ttk.Label(self,text= "Food Order Form",font = ("TkDefaultFont", 16)).grid(row=0,sticky=(tk.W+tk.E,tk.N,tk.S))
         
@@ -247,5 +245,11 @@ class Application(tk.Tk):
 
         
 if __name__ == '__main__':
-    app = Application()
-    app.mainloop()
+    root = Tk()
+    root.title("Food Data Enrty Application")
+    root.geometry("800x600")
+    root.s = ttk.Style()
+    root.s.theme_use("clam")        
+    app = Application(root)
+    app.pack(expand = True, fill= BOTH)
+    root.mainloop()
