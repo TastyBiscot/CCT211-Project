@@ -3,8 +3,9 @@ import tkinter.font as font
 
 
 class Login(Frame):
-    def __init__(self, parent):
+    def __init__(self, parent, model):
         Frame.__init__(self, parent)
+        self.model = model
 
         f = font.Font(family='Times', size=32)
         self.title = Label(self, text="Login", font=f)
@@ -18,6 +19,16 @@ class Login(Frame):
         self.username.place(relx=0.5, rely=0.49, anchor=CENTER)
         self.password = Entry(self)
         self.password.place(relx=0.5, rely=0.53, anchor=CENTER)
+        self.enter = Button(self, text="Enter", relief=GROOVE)
+        self.enter.place(relx=0.5, rely=0.58, anchor=CENTER)
+        self.error = Label(self)
+        self.error.place(relx=0.5, rely=0.62, anchor=CENTER)
+
+    def login(self):
+        if self.model.check(self.username.get(), self.password.get()):
+            pass
+        else:
+            self.error.configure(Text="Invalid username or password")
 
 
 class LoginModel:

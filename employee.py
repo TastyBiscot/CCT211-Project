@@ -8,6 +8,12 @@ class Employee:
         self.username = username
         self.password = password
 
+    def __eq__(self, other):
+        if isinstance(other, Employee):
+            if self.username == other.username:
+                return True
+        return False
+
 
 if __name__ == '__main__':
     pass
