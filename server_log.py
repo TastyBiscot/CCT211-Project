@@ -18,7 +18,7 @@ class DataRecordForm(tk.Frame): #subclass Frame
         self.inputs['Date'].grid(row=0,column=0)
         self.inputs['Date'].columnconfigure(0,weight=1)
         
-        self.inputs['Time'] = LabelInput(recordinfo, "Time",input_class = ttk.Combobox, input_var = tk.StringVar(), input_args={"values":["8:00","12:00","16:00","20:00"]})
+        self.inputs['Time'] = LabelInput(recordinfo, "Time",input_class = ttk.Combobox, input_var = tk.StringVar(), input_args={"values":["10:00","11:00","12:00","1:00","2:00","3:00","4:00"]})
         self.inputs['Time'].grid(row = 0, column = 1)
         self.inputs['Time'].columnconfigure(0,weight=1)
         
