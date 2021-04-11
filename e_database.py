@@ -7,6 +7,10 @@ import re
 
 
 class EDatabase:
+    """
+    The model of the Employee database. Read and write Employee information
+    into a CSV files
+    """
 
     def __init__(self, filename):
         self.employees = []
@@ -27,9 +31,12 @@ class EDatabase:
                                                password))
 
     def add_employee(self, employee):
+        """Takes an employee and add it and then save it to the CSV."""
         self.employees.append(employee)
+        self.save()
 
     def check_username(self, un):
+        """"""
         for x in self.employees:
             if x.username == un:
                 return False
@@ -42,6 +49,7 @@ class EDatabase:
                 rm = x
         if rm is not None:
             self.employees.remove(rm)
+            self.save()
 
     def save(self):
         """save the employees into the csv file"""
@@ -68,7 +76,6 @@ class EDGUI(Frame):
         self.addframe.grid(row=0, column=0, sticky="nsew")
 
         validation = self.addframe.register(self.v)
-
 
         self.a_title = Label(self.addframe, text="Employee Information",
                              font=t_size)
@@ -206,7 +213,6 @@ class EDGUI(Frame):
 
     def delete(self):
         self.model.remove_employee(self.tree.item(self.curItem)['values'][2])
-        self.model.save()
         self.tree.delete(self.curItem)
         self.curItem = None
         self.dele.configure(state=DISABLED)
@@ -250,7 +256,6 @@ class EDGUI(Frame):
         if not error:
             self.model.add_employee(Employee(fn, ln, job, un, pw))
             self.tree.insert("", 'end', text=fn, values=(ln, job, un))
-            self.model.save()
             self.go_to_page(self.mainframe)
 
     def go_back(self):

@@ -24,6 +24,7 @@ class Login(Frame):
         self.username.place(relx=0.5, rely=0.49, anchor=CENTER)
         self.password = Entry(self, textvariable=self.p_str)
         self.password.bind("<KeyRelease>", self.press)
+        self.password.bind("<BackSpace>", self.dele)
         self.password.place(relx=0.5, rely=0.53, anchor=CENTER)
         self.enter = Button(self, text="Enter", relief=GROOVE, command=self.login)
         self.enter.place(relx=0.5, rely=0.58, anchor=CENTER)
@@ -53,6 +54,8 @@ class Login(Frame):
         if event.char != '':
             self.pw += event.char
 
+    def dele(self, event):
+        self.pw = self.pw[0:-1]
 
 
 class LoginModel:
