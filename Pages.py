@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.ttk as ttk
 from tkinter import*
 import pandas as pd
 from pandas import DataFrame
@@ -20,7 +21,7 @@ df_server = df.groupby(['Server']).sum()
 df2 = DataFrame(df,columns=['Seated','Server'])
 #print(df2)
 df2 = df2.groupby(['Server']).sum()
-print(df2)
+#print(df2)
 df3 = DataFrame(df,columns=['Table','Time'])
 
 topping_frames = [df['Topping 1'], df['Topping 2'], df['Topping 3']]
@@ -38,6 +39,10 @@ class FrameMoving(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
         self.geometry("1200x900")
+        self.s = ttk.Style()
+        self.s.theme_use("clam")
+        self.s.configure('Blue.TLabel', foreground='white',background='blue',font='Helvetica 20')
+        self.s.map('Blue.TLabel',foreground=[('pressed','yellow'),('active','red')])
 
         container.pack(side="top", fill="both", expand = True)
 
@@ -77,15 +82,15 @@ class LoginPage(tk.Frame):
         log = Login(self)
         log.pack(expand=True, fill=BOTH)
 
-        button = tk.Button(self, text="Manager",width=20,
+        button = ttk.Button(self, text="Manager",width=20,
                             command=lambda: controller.show_frame(ManagerPage))
         button.pack(pady=10,padx=10)
 
-        button = tk.Button(self, text="Server",width=20,
+        button = ttk.Button(self, text="Server",width=20,
                             command=lambda: controller.show_frame(ServerPage))
         button.pack(pady=10,padx=10)
 
-        button = tk.Button(self, text="Chef",width=20,
+        button = ttk.Button(self, text="Chef",width=20,
                             command=lambda: controller.show_frame(ChefPage))
         button.pack(pady=10,padx=10)
 
@@ -97,19 +102,19 @@ class ManagerPage(tk.Frame):
         label = tk.Label(self, text="Manager Page", font=H1_FONT)
         label.pack(pady=50,padx=10)
 
-        button = tk.Button(self, text="Purchase Statistics",width=30,font=H1_FONT,
+        button = ttk.Button(self, text="Purchase Statistics",width=30,
                             command=lambda: controller.show_frame("GraphPageOne"))
         button.pack(pady=20,padx=20)
         
-        button = tk.Button(self, text="All Sales Viewer",width=30,font=H1_FONT,
+        button = ttk.Button(self, text="All Sales Viewer",width=30,
                             command=lambda: controller.show_frame("TreeViewPage"))
         button.pack(pady=20,padx=20)        
 
-        button = tk.Button(self, text="Employee Management",width=30,font=H1_FONT,
+        button = ttk.Button(self, text="Employee Management",width=30,
                             command=lambda: controller.show_frame("EmployeePage"))
         button.pack(pady=20,padx=20)
 
-        button = tk.Button(self, text="Log Out",width=20,font=H2_FONT,
+        button = ttk.Button(self, text="Log Out",width=20,
                             command=lambda: controller.show_frame("Login"))
         button.pack(pady=20,padx=20)
 
@@ -124,7 +129,7 @@ class EmployeePage(tk.Frame):
 
 
 
-        button1 = tk.Button(self, text="Return",
+        button1 = ttk.Button(self, text="Return",
                             command=lambda: controller.show_frame("ManagerPage"))
         button1.pack()
 
@@ -133,8 +138,8 @@ class GraphPageOne(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Table X Time Page", font=LARGE_FONT)
-        label.pack(pady=10,padx=10)
+        #label = tk.Label(self, text="Table X Time Page", font=LARGE_FONT)
+        #label.pack(pady=10,padx=10)
 
         figure3 = plt.Figure(figsize=(5,4), dpi=100)
         ax3 = figure3.add_subplot(111)
@@ -145,16 +150,16 @@ class GraphPageOne(tk.Frame):
         ax3.set_xlabel('Table')
         ax3.set_title('Table X Time')
         
-        button = tk.Button(self, text="Server X Seated Graph",width=25,font=H2_FONT,
+        button = ttk.Button(self, text="Server X Seated Graph",width=25,
                             command=lambda: controller.show_frame("GraphPageTwo"))
         button.pack(side = 'left', pady=10,padx=30)
 
-        button = tk.Button(self, text="Favourite Toppings Graph",width=25,font=H2_FONT,
+        button = ttk.Button(self, text="Favourite Toppings Graph",width=25,
                             command=lambda: controller.show_frame("GraphPageThree"))
         button.pack(side = 'left',pady=10,padx=30)        
 
 
-        button1 = tk.Button(self, text="Return",font=H2_FONT,width=25,
+        button1 = ttk.Button(self, text="Return",width=25,
                             command=lambda: controller.show_frame("ManagerPage"))
         button1.pack(side = 'left',pady=10,padx=30)        
         
@@ -162,8 +167,8 @@ class GraphPageTwo(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Server X Seated Page", font=LARGE_FONT)
-        label.pack(pady=10,padx=10)
+        #label = tk.Label(self, text="Server X Seated Page", font=LARGE_FONT)
+        #label.pack(pady=10,padx=10)
 
         figure3 = plt.Figure(figsize=(5,4), dpi=100)
         ax3 = figure3.add_subplot(111)
@@ -174,17 +179,17 @@ class GraphPageTwo(tk.Frame):
         ax3.set_xlabel('Seated')
         ax3.set_title('Server X Seated')
         
-        button = tk.Button(self, text="Time X Seated Graph",width=25,font=H2_FONT,
+        button = ttk.Button(self, text="Time X Seated Graph",width=25,
                             command=lambda: controller.show_frame("GraphPageOne"))
         button.pack(side = 'left',pady=10,padx=30)        
 
 
-        button = tk.Button(self, text="Favourite Toppings Graph",width=25,font=H2_FONT,
+        button = ttk.Button(self, text="Favourite Toppings Graph",width=25,
                             command=lambda: controller.show_frame("GraphPageThree"))
         button.pack(side = 'left',pady=10,padx=30)        
 
 
-        button1 = tk.Button(self, text="Return",font=H2_FONT,width=25,
+        button1 = ttk.Button(self, text="Return",width=25,
                             command=lambda: controller.show_frame("ManagerPage"))
         button1.pack(side = 'left',pady=10,padx=30)             
 
@@ -205,17 +210,17 @@ class GraphPageThree(tk.Frame):
         ax3.set_xlabel('Total Amount')
         ax3.set_title('Graph of Favourite Toppings')
         
-        button = tk.Button(self, text="Time X Seated Graph",width=25,font=H2_FONT,
+        button = ttk.Button(self, text="Time X Seated Graph",width=25,
                             command=lambda: controller.show_frame("GraphPageOne"))
         button.pack(side = 'left',pady=10,padx=30)        
 
 
-        button = tk.Button(self, text="Server X Seated Graph",width=25,font=H2_FONT,
+        button = ttk.Button(self, text="Server X Seated Graph",width=25,
                             command=lambda: controller.show_frame("GraphPageTwo"))
         button.pack(side = 'left', pady=10,padx=30)              
 
 
-        button1 = tk.Button(self, text="Return",font=H2_FONT,width=25,
+        button1 = ttk.Button(self, text="Return",width=25,
                             command=lambda: controller.show_frame("ManagerPage"))
         button1.pack(side = 'left',pady=10,padx=30)           
        
@@ -230,7 +235,7 @@ class TreeViewPage(tk.Frame):
         view = CSV_Reader(self)
         view.pack(expand=True, fill="both",pady=10,padx=10)
         
-        button1 = tk.Button(self, text="Return",font=H2_FONT,width=25,
+        button1 = ttk.Button(self, text="Return",width=25,
                             command=lambda: controller.show_frame("ManagerPage"))
         button1.pack(pady=10,padx=10)           
         
@@ -259,15 +264,6 @@ class ChefPage(tk.Frame):
         button1 = tk.Button(self, text="Log Out",
                             command=lambda: controller.show_frame("Login"))
         button1.pack()
-
-
-
-
-
-
-
-
-
 
 
 
