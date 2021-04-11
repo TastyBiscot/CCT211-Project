@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter.ttk import *
 import csv
 import tkinter.font as font
+import re
 
 
 class EDatabase:
@@ -71,19 +72,19 @@ class EDGUI(Frame):
         self.a_title.place(relx=0.48, rely=0.3, anchor=CENTER)
 
         self.fn_l = Label(self.addframe, text='First Name')
-        self.fn_l.place(relx=0.42, rely=0.37, anchor=CENTER)
+        self.fn_l.place(relx=0.37, rely=0.37, anchor=CENTER)
 
         self.ln_l = Label(self.addframe, text='Last Name')
-        self.ln_l.place(relx=0.42, rely=0.42, anchor=CENTER)
+        self.ln_l.place(relx=0.37, rely=0.42, anchor=CENTER)
 
         self.job_l = Label(self.addframe, text='Job')
-        self.job_l.place(relx=0.42, rely=0.47, anchor=CENTER)
+        self.job_l.place(relx=0.37, rely=0.47, anchor=CENTER)
 
         self.un_l = Label(self.addframe, text='Username')
-        self.un_l.place(relx=0.42, rely=0.52, anchor=CENTER)
+        self.un_l.place(relx=0.37, rely=0.52, anchor=CENTER)
 
         self.pw_l = Label(self.addframe, text='Password')
-        self.pw_l.place(relx=0.42, rely=0.57, anchor=CENTER)
+        self.pw_l.place(relx=0.37, rely=0.57, anchor=CENTER)
 
         self.fn = StringVar()
         self.fn_e = Entry(self.addframe, textvariable=self.fn)
@@ -116,19 +117,19 @@ class EDGUI(Frame):
 
         self.fn_error = Label(self.addframe, textvariable=self.errors[0],
                               justify=LEFT, foreground='red')
-        self.fn_error.place(relx=0.59, rely=0.37, anchor=CENTER)
+        self.fn_error.place(relx=0.64, rely=0.37, anchor=CENTER)
 
         self.ln_error = Label(self.addframe, textvariable=self.errors[1],
                               justify=LEFT, foreground='red')
-        self.ln_error.place(relx=0.59, rely=0.42, anchor=CENTER)
+        self.ln_error.place(relx=0.64, rely=0.42, anchor=CENTER)
 
         self.un_error = Label(self.addframe, textvariable=self.errors[2],
                               justify=LEFT, foreground='red')
-        self.un_error.place(relx=0.59, rely=0.52, anchor=CENTER)
+        self.un_error.place(relx=0.64, rely=0.52, anchor=CENTER)
 
         self.pw_error = Label(self.addframe, textvariable=self.errors[3],
                               justify=LEFT, foreground='red')
-        self.pw_error.place(relx=0.59, rely=0.57, anchor=CENTER)
+        self.pw_error.place(relx=0.64, rely=0.57, anchor=CENTER)
 
         self.back_db = Button(self.addframe, text='Back',
                               command=lambda: self.go_to_page(self.mainframe))
@@ -194,6 +195,7 @@ class EDGUI(Frame):
         if len(self.tree.item(self.curItem)['values']) >= 3:
             self.dele.config(state=NORMAL)
         else:
+            self.dele.config(state=DISABLED)
             self.curItem = None
 
     def delete(self):
