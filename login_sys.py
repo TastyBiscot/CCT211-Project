@@ -8,6 +8,10 @@ class Login(Frame):
         self.model = model
         self.controller = controller
 
+        self.u_str = StringVar()
+        self.p_str = StringVar()
+        self.e_str = StringVar()
+
         f = font.Font(family='Times', size=32)
         self.title = Label(self, text="Login", font=f)
         self.title.place(relx=0.5, rely=0.41, anchor=CENTER)
@@ -16,27 +20,28 @@ class Login(Frame):
         self.pass_label = Label(self, text="Password")
         self.pass_label.place(relx=0.38, rely=0.53, anchor=CENTER)
 
-        self.username = Entry(self)
+        self.username = Entry(self, textvariable=self.u_str)
         self.username.place(relx=0.5, rely=0.49, anchor=CENTER)
-        self.password = Entry(self)
+        self.password = Entry(self, textvariable=self.p_str)
         self.password.place(relx=0.5, rely=0.53, anchor=CENTER)
         self.enter = Button(self, text="Enter", relief=GROOVE, command=self.login)
         self.enter.place(relx=0.5, rely=0.58, anchor=CENTER)
-        self.error = Label(self)
+        self.error = Label(self, textvariable=self.e_str)
         self.error.place(relx=0.5, rely=0.62, anchor=CENTER)
 
     def login(self):
         if self.model.check(self.username.get(), self.password.get()):
-            if self.model.get_job(self.username.get()) == 'manager' or self.model.get_job(self.username.get()) == 'Admin':
+            if self.model.get_job(self.username.get()) == 'Manager' or self.model.get_job(self.username.get()) == 'Admin':
                 self.controller.show_frame('ManagerPage')
-            elif self.model.get_job(self.username.get()) == 'chef':
+            elif self.model.get_job(self.username.get()) == 'Chef':
                 self.controller.show_frame('ChefPage')
             else:
                 self.controller.show_frame('ServerPage')
-            self.username.configure(text='')
-            self.password.configure(text='')
+            self.u_str.set('')
+            self.p_str.set('')
+            self.e_str.set('')
         else:
-            self.error.configure(text="Invalid username or password")
+            self.e_str.set("Invalid username or password")
 
 
 class LoginModel:
