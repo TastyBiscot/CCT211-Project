@@ -7,7 +7,7 @@ class Login(Frame):
         Frame.__init__(self, parent)
         self.model = model
         self.controller = controller
-
+        self.pw = ''
         self.u_str = StringVar()
         self.p_str = StringVar()
         self.e_str = StringVar()
@@ -23,6 +23,7 @@ class Login(Frame):
         self.username = Entry(self, textvariable=self.u_str)
         self.username.place(relx=0.5, rely=0.49, anchor=CENTER)
         self.password = Entry(self, textvariable=self.p_str)
+        self.password.bind("<KeyRelease>", self.press)
         self.password.place(relx=0.5, rely=0.53, anchor=CENTER)
         self.enter = Button(self, text="Enter", relief=GROOVE, command=self.login)
         self.enter.place(relx=0.5, rely=0.58, anchor=CENTER)
@@ -30,10 +31,11 @@ class Login(Frame):
         self.error.place(relx=0.5, rely=0.62, anchor=CENTER)
 
     def login(self):
-        if self.model.check(self.username.get(), self.password.get()):
-            if self.model.get_job(self.username.get()) == 'Manager' or self.model.get_job(self.username.get()) == 'Admin':
+        if self.model.check(self.u_str.get(), self.pw):
+            job = self.model.get_job(self.u_str.get())
+            if job == 'Manager' or job == 'Admin':
                 self.controller.show_frame('ManagerPage')
-            elif self.model.get_job(self.username.get()) == 'Chef':
+            elif job == 'Chef':
                 self.controller.show_frame('ChefPage')
             else:
                 self.controller.show_frame('ServerPage')
@@ -42,6 +44,15 @@ class Login(Frame):
             self.e_str.set('')
         else:
             self.e_str.set("Invalid username or password")
+
+    def press(self, event):
+        p = ""
+        for x in range(0, len(self.p_str.get())):
+            p += "*"
+        self.p_str.set(p)
+        if event.char != '':
+            self.pw += event.char
+
 
 
 class LoginModel:

@@ -67,6 +67,9 @@ class EDGUI(Frame):
         self.addframe = Frame(self)
         self.addframe.grid(row=0, column=0, sticky="nsew")
 
+        validation = self.addframe.register(self.v)
+
+
         self.a_title = Label(self.addframe, text="Employee Information",
                              font=t_size)
         self.a_title.place(relx=0.48, rely=0.3, anchor=CENTER)
@@ -87,11 +90,13 @@ class EDGUI(Frame):
         self.pw_l.place(relx=0.37, rely=0.57, anchor=CENTER)
 
         self.fn = StringVar()
-        self.fn_e = Entry(self.addframe, textvariable=self.fn)
+        self.fn_e = Entry(self.addframe, textvariable=self.fn, validate="key",
+                          validatecommand=(validation, "%S"))
         self.fn_e.place(relx=0.5, rely=0.37, anchor=CENTER)
 
         self.ln = StringVar()
-        self.ln_e = Entry(self.addframe, textvariable=self.ln)
+        self.ln_e = Entry(self.addframe, textvariable=self.ln, validate="key",
+                          validatecommand=(validation, "%S"))
         self.ln_e.place(relx=0.5, rely=0.42, anchor=CENTER)
 
         self.options = ["Manager", "Chef", "Server"]
@@ -100,8 +105,10 @@ class EDGUI(Frame):
         self.job_e = OptionMenu(self.addframe, self.job, *self.options)
         self.job_e.place(relx=0.5, rely=0.47, anchor=CENTER)
 
+        validation = self.addframe.register(self.un_v)
         self.un = StringVar()
-        self.un_e = Entry(self.addframe, textvariable=self.un)
+        self.un_e = Entry(self.addframe, textvariable=self.un, validate="key",
+                          validatecommand=(validation, "%S"))
         self.un_e.place(relx=0.5, rely=0.52, anchor=CENTER)
 
         self.pw = StringVar()
@@ -191,7 +198,6 @@ class EDGUI(Frame):
 
     def select(self, event):
         self.curItem = self.tree.focus()
-        len(self.tree.item(self.curItem)['values'])
         if len(self.tree.item(self.curItem)['values']) >= 3:
             self.dele.config(state=NORMAL)
         else:
@@ -249,6 +255,14 @@ class EDGUI(Frame):
 
     def go_back(self):
         self.controller.show_frame('ManagerPage')
+
+    def v(self, e):
+        p = re.compile("[a-zA-Z]")
+        return p.match(e) is not None
+
+    def un_v(self, e):
+        p = re.compile("\S")
+        return p.match(e) is not None
 
 
 if __name__ == '__main__':
