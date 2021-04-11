@@ -121,7 +121,7 @@ class EmployeePage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg = 'blue')
-        label = tk.Label(self, text="Employee Managment", font=LARGE_FONT)
+        label = ttk.Label(self, text="Employee Managment", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
 
 
@@ -227,7 +227,7 @@ class TreeViewPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg = 'blue')
-        label = tk.Label(self, text="All Sales", font=H1_FONT)
+        label = ttk.Label(self, text="All Sales", font=H1_FONT)
         label.pack(pady=10,padx=10)
 
         view = CSV_Reader(self)
@@ -247,7 +247,7 @@ class ServerPage(tk.Frame):
         app = Application(self)
         app.pack(expand=True, fill=BOTH)
 
-        button1 = tk.Button(self, text="Log Out",
+        button1 = ttk.Button(self, text="Log Out",
                             command=lambda: controller.show_frame("Login"))
         button1.pack()
 
@@ -255,11 +255,11 @@ class ChefPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg = 'blue')
-        label = tk.Label(self, text="Kitchen", font=LARGE_FONT)
+        label = ttk.Label(self, text="Kitchen", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
 
 
-        button1 = tk.Button(self, text="Log Out",
+        button1 = ttk.Button(self, text="Log Out",
                             command=lambda: controller.show_frame("Login"))
         button1.pack()
 
