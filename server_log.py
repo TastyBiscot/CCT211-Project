@@ -14,17 +14,17 @@ class DataRecordForm(tk.Frame): #subclass Frame
         self.inputs = {} #dict to track input widgets
         recordinfo = tk.LabelFrame(self,text = "Table Information") #frame for recordinfo
                                    
-        self.inputs['Date'] = LabelInput(recordinfo,"Date",input_var=tk.StringVar())
+        self.inputs['Date'] = LabelInput(recordinfo,"Date",input_class = ttk.Combobox,input_var=tk.StringVar(),input_args={"values":[datetime.today().strftime("%Y-%m-%d")]})
         self.inputs['Date'].grid(row=0,column=0)
         self.inputs['Date'].columnconfigure(0,weight=1)
         
-        self.inputs['Time'] = LabelInput(recordinfo, "Time",input_class = ttk.Combobox, input_var = tk.StringVar(), input_args={"values":["10:00","11:00","12:00","1:00","2:00","3:00","4:00"]})
+        self.inputs['Time'] = LabelInput(recordinfo, "Time",input_class = ttk.Combobox, input_var = tk.StringVar(), input_args={"values":[datetime.now().strftime("%H:%M"),"11:00","12:00","1:00","2:00","3:00","4:00"]})
         self.inputs['Time'].grid(row = 0, column = 1)
         self.inputs['Time'].columnconfigure(0,weight=1)
         
         self.inputs['Server'] = LabelInput(
-            recordinfo, "Server",
-            input_var=tk.StringVar()
+            recordinfo, "Server",input_class = ttk.Combobox,
+            input_var=tk.StringVar(), input_args={"values":['Anna','Julia','Nick','Alex','Sukhi']}
         )
         self.inputs['Server'].grid(row=0, column=2)
         self.inputs['Server'].columnconfigure(0,weight=1)
