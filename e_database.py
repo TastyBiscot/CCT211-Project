@@ -149,7 +149,7 @@ class EDGUI(Frame):
         self.dele = Button(self.buttons, text='Delete Employee', state=DISABLED,
                            command=self.delete)
         self.dele.pack()
-        self.back = Button(self.buttons, text='Back')
+        self.back = Button(self.buttons, text='Back', command=self.go_back)
         self.back.pack()
 
         self.Table = Frame(self.mainframe)
@@ -244,6 +244,9 @@ class EDGUI(Frame):
             self.tree.insert("", 'end', text=fn, values=(ln, job, un))
             self.model.save()
             self.go_to_page(self.mainframe)
+
+    def go_back(self):
+        self.controller.show_frame('ManagerPage')
 
 
 if __name__ == '__main__':
