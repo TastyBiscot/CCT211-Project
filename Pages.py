@@ -41,8 +41,6 @@ class FrameMoving(tk.Tk):
         self.geometry("1200x900")
         self.s = ttk.Style()
         self.s.theme_use("clam")
-        self.s.configure('Blue.TLabel', foreground='white',background='blue',font='Helvetica 20')
-        self.s.map('Blue.TLabel',foreground=[('pressed','yellow'),('active','red')])
 
         container.pack(side="top", fill="both", expand = True)
 
