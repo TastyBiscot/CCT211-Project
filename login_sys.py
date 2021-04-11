@@ -33,10 +33,10 @@ class Login(Frame):
                 self.controller.show_frame('ChefPage')
             else:
                 self.controller.show_frame('ServerPage')
-            self.username.configure(Text='')
-            self.password.configure(Text='')
+            self.username.configure(text='')
+            self.password.configure(text='')
         else:
-            self.error.configure(Text="Invalid username or password")
+            self.error.configure(text="Invalid username or password")
 
 
 class LoginModel:
