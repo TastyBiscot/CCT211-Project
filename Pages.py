@@ -7,6 +7,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from login_sys import Login, LoginModel
 from e_database import EDatabase
 from server_log import Application
+from TreeViewManager import CSV_Reader
 
 df = pd.read_csv('All_Orders_2021-04-10.csv') #reads file stores into dataframe
 
@@ -51,7 +52,7 @@ class FrameMoving(tk.Tk):
         login.grid(row=0, column=0, sticky="nsew")
         self.frames['Login'] = login
 
-        for F in (ManagerPage, EmployeePage, ServerPage, ChefPage, GraphPageOne,GraphPageTwo,GraphPageThree):
+        for F in (ManagerPage, EmployeePage, ServerPage, ChefPage, GraphPageOne,GraphPageTwo,GraphPageThree,TreeViewPage):
             frame = F(container, self)
 
             self.frames[F.__name__] = frame
@@ -99,6 +100,10 @@ class ManagerPage(tk.Frame):
         button = tk.Button(self, text="Purchase Statistics",width=30,font=H1_FONT,
                             command=lambda: controller.show_frame("GraphPageOne"))
         button.pack(pady=20,padx=20)
+        
+        button = tk.Button(self, text="All Sales Viewer",width=30,font=H1_FONT,
+                            command=lambda: controller.show_frame("TreeViewPage"))
+        button.pack(pady=20,padx=20)        
 
         button = tk.Button(self, text="Employee Management",width=30,font=H1_FONT,
                             command=lambda: controller.show_frame("EmployeePage"))
@@ -215,6 +220,20 @@ class GraphPageThree(tk.Frame):
         button1.pack(side = 'left',pady=10,padx=30)           
        
 
+class TreeViewPage(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg = 'blue')
+        label = tk.Label(self, text="All Sales", font=H1_FONT)
+        label.pack(pady=10,padx=10)
+
+        view = CSV_Reader(self)
+        view.pack(expand=True, fill="both",pady=10,padx=10)
+        
+        button1 = tk.Button(self, text="Return",font=H2_FONT,width=25,
+                            command=lambda: controller.show_frame("ManagerPage"))
+        button1.pack(pady=10,padx=10)           
+        
 class ServerPage(tk.Frame):
 
     def __init__(self, parent, controller):
