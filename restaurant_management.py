@@ -1,15 +1,6 @@
-from login_sys import Login
-from tkinter import*
-
-
-def setup(window):
-    window.title("Restaurant Management")
-    window.geometry("1200x900")
-    log = Login(window)
-    log.pack(expand=True, fill=BOTH)
+from Pages import FrameMoving
 
 
 if __name__ == '__main__':
-    root = Tk()
-    setup(root)
-    root.mainloop()
+    app = FrameMoving()
+    app.mainloop()

@@ -9,7 +9,8 @@ import re
 class EDatabase:
     """
     The model of the Employee database. Read and write Employee information
-    into a CSV files
+    into a CSV files.
+    Username for each employee is unique.
     """
 
     def __init__(self, filename):
@@ -36,13 +37,14 @@ class EDatabase:
         self.save()
 
     def check_username(self, un):
-        """"""
+        """Check if the username is already taken. Return True if not taken"""
         for x in self.employees:
             if x.username == un:
                 return False
         return True
 
     def remove_employee(self, un):
+        """remove an employee base on there username"""
         rm = None
         for x in self.employees:
             if x.username == un:
@@ -62,16 +64,25 @@ class EDatabase:
 
 
 class EDGUI(Frame):
+    """
+    The GUI for the Database.
+    """
     def __init__(self, parent, model, controller):
         Frame.__init__(self, parent)
+        # save a reference to database model
         self.model = model
+        # Controller is use to transfer between screen on the main program
         self.controller = controller
+        # The item on the tree view currently selected
         self.curItem = None
+
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
+        # Font for the title
         t_size = font.Font(family='Times', size=32)
 
+        # Build the add employee page
         self.addframe = Frame(self)
         self.addframe.grid(row=0, column=0, sticky="nsew")
 
@@ -149,6 +160,7 @@ class EDGUI(Frame):
                               command=lambda: self.go_to_page(self.mainframe))
         self.back_db.place(relx=0.04, rely=0.97, anchor=CENTER)
 
+        # Build a main frame that display each employee
         self.mainframe = Frame(self)
         self.mainframe.grid(row=0, column=0, sticky="nsew")
 
@@ -156,6 +168,7 @@ class EDGUI(Frame):
                              font=t_size)
         self.d_title.pack(side=TOP, fill=X)
 
+        # Build a frame to hold all the button
         self.buttons = Frame(self.mainframe)
         self.buttons.pack(side=LEFT, fill=Y)
         self.add = Button(self.buttons, text='Add Employee',
@@ -167,6 +180,7 @@ class EDGUI(Frame):
         self.back = Button(self.buttons, text='Back', command=self.go_back)
         self.back.pack()
 
+        # Build a frame to hold the Treeview of the employee
         self.Table = Frame(self.mainframe)
         self.Table.pack(side=RIGHT, expand=True, fill=BOTH)
 
@@ -191,19 +205,26 @@ class EDGUI(Frame):
         self.sy.config(command=self.tree.yview)
         self.sy.pack(side=RIGHT, fill=Y)
 
+        # Bind the mouse click to select method to the tree
         self.tree.bind("<Button-1>", self.select)
 
         self.tree.pack(expand=True, fill=BOTH)
+
+        # Add all the employee to the tree
         self._insert_employees()
 
+        # raise the main interface frame the the front
         self.mainframe.tkraise()
 
     def _insert_employees(self):
+        """Add all the employee to the treeview"""
         for x in self.model.employees:
             self.tree.insert("", 'end', text=x.fname, values=(x.lname, x.job,
                                                               x.username))
 
     def select(self, event):
+        """ Get the item the user click on in the treeview and enable the delete
+        button if it was a valid item"""
         self.curItem = self.tree.focus()
         if len(self.tree.item(self.curItem)['values']) >= 3:
             self.dele.config(state=NORMAL)
@@ -212,12 +233,15 @@ class EDGUI(Frame):
             self.curItem = None
 
     def delete(self):
+        """remove the employee from the database"""
         self.model.remove_employee(self.tree.item(self.curItem)['values'][2])
         self.tree.delete(self.curItem)
         self.curItem = None
         self.dele.configure(state=DISABLED)
 
     def go_to_page(self, frame):
+        """Method to move between the adding user frame and the main database
+        frame"""
         self.fn.set('')
         self.ln.set('')
         self.job.set(self.options[0])
@@ -227,6 +251,7 @@ class EDGUI(Frame):
         frame.tkraise()
 
     def add(self):
+        """Add user to the data base"""
         fn = self.fn.get()
         ln = self.ln.get()
         job = self.job.get()
@@ -234,6 +259,7 @@ class EDGUI(Frame):
         pw = self.pw.get()
         error = False
 
+        # Check if there is any error in the information
         if fn == '':
             self.errors[0].set("Cannot be blank")
             error = True
@@ -253,28 +279,28 @@ class EDGUI(Frame):
             self.errors[3].set("Cannot be blank")
             error = True
 
+        # Add new employee to the database if there is no error
         if not error:
             self.model.add_employee(Employee(fn, ln, job, un, pw))
             self.tree.insert("", 'end', text=fn, values=(ln, job, un))
             self.go_to_page(self.mainframe)
 
     def go_back(self):
+        """Use to go back the the Manager Menu"""
+        self.fn.set('')
+        self.ln.set('')
+        self.job.set(self.options[0])
+        self.un.set('')
+        self.pw.set('')
+        self.dele.configure(state=DISABLED)
         self.controller.show_frame('ManagerPage')
 
     def v(self, e):
+        """Validate input to make sure only alphabet are used"""
         p = re.compile("[a-zA-Z]")
         return p.match(e) is not None
 
     def un_v(self, e):
+        """Validate input to make sure no space was used"""
         p = re.compile("\S")
         return p.match(e) is not None
-
-
-if __name__ == '__main__':
-    root = Tk()
-    root.title("Ex1")
-    root.geometry("1200x900")
-    e = EDatabase('employees.csv')
-    log = EDGUI(root, e)
-    log.pack(expand=True, fill=BOTH)
-    root.mainloop()

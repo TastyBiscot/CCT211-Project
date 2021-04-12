@@ -39,6 +39,7 @@ class FrameMoving(tk.Tk):
     def __init__(self, *args, **kwargs):
 
         tk.Tk.__init__(self, *args, **kwargs)
+        self.title("Restaurant Management")
         container = tk.Frame(self)
         self.geometry("1200x900")
         self.s = ttk.Style()
@@ -235,8 +236,3 @@ class ChefPage(tk.Frame):
                             command=lambda: controller.show_frame("Login"))
         button1.pack()
 
-
-
-
-app = FrameMoving()
-app.mainloop()
