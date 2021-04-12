@@ -77,27 +77,7 @@ class FrameMoving(tk.Tk):
         frame.tkraise()
 
 
-class LoginPage(tk.Frame):
 
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self,parent,bg = 'blue')
-        label = tk.Label(self, text="Nicks Pizza", font=H1_FONT)
-        label.pack(pady=50,padx=10)
-
-        log = Login(self)
-        log.pack(expand=True, fill=BOTH)
-
-        button = ttk.Button(self, text="Manager",width=20,
-                            command=lambda: controller.show_frame(ManagerPage))
-        button.pack(pady=10,padx=10)
-
-        button = ttk.Button(self, text="Server",width=20,
-                            command=lambda: controller.show_frame(ServerPage))
-        button.pack(pady=10,padx=10)
-
-        button = ttk.Button(self, text="Chef",width=20,
-                            command=lambda: controller.show_frame(ChefPage))
-        button.pack(pady=10,padx=10)
 
 
 class ManagerPage(tk.Frame):
@@ -122,21 +102,6 @@ class ManagerPage(tk.Frame):
         button = ttk.Button(self, text="Log Out",width=20,
                             command=lambda: controller.show_frame("Login"))
         button.pack(pady=20,padx=20)
-
-
-class EmployeePage(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg = 'blue')
-        label = ttk.Label(self, text="Employee Managment", font=LARGE_FONT)
-        label.pack(pady=10,padx=10)
-
-
-
-
-        button1 = ttk.Button(self, text="Return",
-                            command=lambda: controller.show_frame("ManagerPage"))
-        button1.pack()
 
 
 class GraphPageOne(tk.Frame):
