@@ -60,7 +60,7 @@ class CSV_Reader(tk.Frame):
 
         self.button = ttk.Button(self, text="Completed", state=DISABLED,command=self.save)
 
-        self.button.pack()
+        self.button.pack(side = 'left')
         #self.selected = []
 
     def select(self, event):
