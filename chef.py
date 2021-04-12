@@ -80,18 +80,17 @@ class CSV_Reader(tk.Frame):
         with open(Endcsv, 'a', newline='') as f:
             writer = csv.writer(f) 
             Id = self.treeview.item(self.currentitem)
-            writer.writerow([Id["values"][0],Id["text"],Id["values"][2],Id["values"][1],Id["values"][4],Id["values"][5],Id["values"][6],Id["values"][7],Id["values"][8],Id["values"][9]])
+            writer.writerow([Id["values"][0],Id["text"],Id["values"][2],Id["values"][1],Id["values"][3],Id["values"][4],Id["values"][5],Id["values"][6],Id["values"][7],Id["values"][8],Id["values"][9]])
             
         self.treeview.delete(self.currentitem)
         
         with open(quecsv,'w', newline='') as f:  
             writer = csv.writer(f) 
-            
+            writer.writerow(["Date","Time","Server","Table","Seated","Size","Crust","Sauce","Topping 1","Topping 2", "Topping 3"])
             for i in self.treeview.get_children():
                 #if self.currentitem  != self.treeview.item(i):
                 Id = self.treeview.item(i)
-                writer.writerow(["Date","Time","Server","Table","Seated","Size","Crust","Sauce","Topping 1","Topping 2", "Topping 3"])
-                writer.writerow([Id["values"][0],Id["text"],Id["values"][2],Id["values"][1],Id["values"][4],Id["values"][5],Id["values"][6],Id["values"][7],Id["values"][8],Id["values"][9]])
+                writer.writerow([Id["values"][0],Id["text"],Id["values"][2],Id["values"][1],Id["values"][3],Id["values"][4],Id["values"][5],Id["values"][6],Id["values"][7],Id["values"][8],Id["values"][9]])
         #self.currentitem = None                         
                
     

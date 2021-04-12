@@ -1,30 +1,6 @@
-Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3,Allergies
-,,,,,,,,,,,
-,,,,,,,,,,,2004-10-21,10:00,Anna,1,Medium,Chicago,Little,Bacon,Bacon,Sausage
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,20:00,Anna,3,Large,Chicago,Little,Pepper,Onion,Bacon
-2004-05-21,18:00,Anna,3,X-Large,Cheese Filled,Normal,Pepper,Pineapple,Onion
-2004-05-21,17:00,Nick,8,Large,New York,Extra,Sausage,Onion,Pepper
-2004-05-21,12:00,Julia,4,Large,New York,Little,Sausage,Spinach,
-2004-05-21,21:00,Julia,6,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
-2004-05-21,20:00,Anna,3,Large,Chicago,Little,Pepper,Onion,Bacon
-2004-05-21,19:00,Julia,3,Large,New York,Little,Sausage,Spinach,
-2004-05-21,18:00,Anna,3,X-Large,Cheese Filled,Normal,Pepper,Pineapple,Onion
-2004-05-21,16:00,Julia,2,Large,New York,Little,Sausage,Spinach,
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3,Allergies,Notes
+2004-05-21,12:00,Julia,3,1,X-Large,Cheese Filled,Normal,Pepper,Pineapple,Onion,,,,,,,,,,,,
+2004-05-21,20:00,Anna,7,3,Medium,Chicago,Little,Bacon,Bacon,Sausage
+2004-05-21,16:00,Anna,5,2,Large,New York,Extra,Sausage,Onion,Pepper
+2004-05-21,16:00,Julia,4,3,Large,New York,Little,Sausage,Spinach,
+2004-05-21,12:00,Anna,5,1,X-Large,Cheese Filled,Normal,Pepper,Pineapple,Onion
