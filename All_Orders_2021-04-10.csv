@@ -1,30 +1,22 @@
 Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
-2004-05-21,12:00,Anna,5,3,Large,New York,Extra,Sausage,Onion,Pepper
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
+2004-05-21,8:00,Anna,1,Medium,Chicago,Little,Bacon,Bacon,Sausage
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
+2004-05-21,8:00,Julia,2,X-Large,Cheese Filled,Normal,Pepper,Pineapple,Onion
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
+2004-05-21,9:00,Julia,3,Large,New York,Little,Sausage,Spinach,
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
+2004-05-21,10:00,Anna,5,Large,New York,Extra,Sausage,Onion,Pepper
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
+2004-05-21,11:00,Anna,5,X-Large,Cheese Filled,Normal,Pepper,Pineapple,Onion
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
+2004-05-21,12:00,Julia,4,Large,New York,Little,Sausage,Spinach,
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
+2004-05-21,13:00,Anna,5,Large,New York,Extra,Sausage,Onion,Pepper
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
+2004-05-21,14:00,Anna,7,Medium,Chicago,Little,Bacon,Bacon,Sausage
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
+2004-05-21,15:00,Julia,3,X-Large,Cheese Filled,Normal,Pepper,Pineapple,Onion
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
+2004-05-21,17:00,Nick,8,Large,New York,Extra,Sausage,Onion,Pepper
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
+2004-05-21,17:00,Nick,2,Medium,Chicago,Little,Bacon,Bacon,
