@@ -9,6 +9,7 @@ from login_sys import Login, LoginModel
 from e_database import EDatabase, EDGUI
 from server_log import Application
 from TreeViewManager import CSV_Reader
+from chef import Chef
 from datetime import datetime
 import os
 
@@ -62,8 +63,14 @@ class FrameMoving(tk.Tk):
         login.grid(row=0, column=0, sticky="nsew")
         self.frames['Login'] = login
 
-        for F in (ManagerPage, ServerPage, ChefPage, GraphPageOne, GraphPageTwo,
-                  GraphPageThree, TreeViewPage):
+        datestring = datetime.today().strftime("%Y-%m-%d")
+        q = "All_Orders_{}.csv".format(datestring)
+        e = 'All_Completed_Orders.csv'
+        chef = Chef(container, self, q, e)
+        chef.grid(row=0, column=0, sticky="nsew")
+        self.frames['ChefPage'] = chef
+
+        for F in (ManagerPage, ServerPage, GraphPageOne, GraphPageTwo, GraphPageThree, TreeViewPage):
             frame = F(container, self)
 
             self.frames[F.__name__] = frame
@@ -76,9 +83,6 @@ class FrameMoving(tk.Tk):
 
         frame = self.frames[cont]
         frame.tkraise()
-
-
-
 
 
 class ManagerPage(tk.Frame):
@@ -114,7 +118,7 @@ class GraphPageOne(tk.Frame):
 
         figure3 = plt.Figure(figsize=(5,4), dpi=100)
         ax3 = figure3.add_subplot(111)
-        ax3.scatter(df3['Time'],df3['Table'], color = 'r')
+        ax3.scatter(df3['Time'], df3['Table'], color='r')
         scatter3 = FigureCanvasTkAgg(figure3, self)
         scatter3.get_tk_widget().pack(fill=tk.BOTH)
         ax3.legend(['Seated'])
@@ -133,6 +137,7 @@ class GraphPageOne(tk.Frame):
         button1 = ttk.Button(self, text="Return",width=25,
                             command=lambda: controller.show_frame("ManagerPage"))
         button1.pack(side = 'left',pady=10,padx=30)
+
 
 class GraphPageTwo(tk.Frame):
 
@@ -163,6 +168,7 @@ class GraphPageTwo(tk.Frame):
         button1 = ttk.Button(self, text="Return",width=25,
                             command=lambda: controller.show_frame("ManagerPage"))
         button1.pack(side = 'left',pady=10,padx=30)
+
 
 class GraphPageThree(tk.Frame):
 

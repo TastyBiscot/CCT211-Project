@@ -46,6 +46,7 @@ class Login(Frame):
             self.u_str.set('')
             self.p_str.set('')
             self.e_str.set('')
+            self.pw = ''
         else:
             self.e_str.set("Invalid username or password")
 

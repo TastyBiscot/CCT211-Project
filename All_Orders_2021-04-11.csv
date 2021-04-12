@@ -1,5 +1,7 @@
-Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3,Allergies,Notes
-,,,,,,,,,,,False,"
-"
-,,,,,,,,,nn,,False,"
-"
+Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3
+2004-05-21,8:00,Anna,1,1,Medium,Chicago,Little,Bacon,Bacon,Sausage
+2004-05-21,8:00,Julia,2,3,X-Large,Cheese Filled,Normal,Pepper,Pineapple,Onion
+2004-05-21,12:00,Julia,3,2,Large,New York,Little,Sausage,Spinach,
+2004-05-21,12:00,Anna,5,3,Large,New York,Extra,Sausage,Onion,Pepper
+2004-05-21,16:00,Anna,5,2,Large,New York,Extra,Sausage,Onion,Pepper
+2004-05-21,20:00,Anna,7,3,Medium,Chicago,Little,Bacon,Bacon,Sausage
