@@ -7,3 +7,8 @@ Date,Time,Server,Table,Seated,Size,Crust,Sauce,Topping 1,Topping 2,Topping 3,All
 2004-05-21,12:00,Julia,6,3,Large,Cheese Filled,Little,Onion,Pineapple,Bacon
 2004-05-21,8:00,Anna,3,2,Large,Chicago,Little,Pepper,Onion,Bacon
 2004-05-21,16:00,Julia,3,3,Large,New York,Little,Sausage,Spinach,
+2004-05-21,12:00,Anna,3,1,X-Large,Cheese Filled,Normal,Pepper,Pineapple,Onion
+2004-05-21,8:00,Nick,2,3,Medium,Chicago,Little,Bacon,Bacon,
+2004-05-21,12:00,Nick,8,2,Large,New York,Extra,Sausage,Onion,Pepper
+2004-05-21,16:00,Julia,2,3,Large,New York,Little,Sausage,Spinach,
+2004-05-21,12:00,Julia,3,1,X-Large,Cheese Filled,Normal,Pepper,Pineapple,Onion

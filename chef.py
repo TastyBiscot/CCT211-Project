@@ -57,10 +57,16 @@ class CSV_Reader(tk.Frame):
         self.read_file()
         
         self.treeview.bind('<Button-1>', self.select)
+        
+        self.button2 = ttk.Button(self, text="Back")
+
+        self.button2.pack(side = 'right',pady=20,padx=20)                
 
         self.button = ttk.Button(self, text="Completed", state=DISABLED,command=self.save)
 
-        self.button.pack(side = 'left')
+        self.button.pack(side = 'left',pady=20,padx=20)
+        
+        
         #self.selected = []
 
     def select(self, event):
