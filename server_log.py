@@ -5,8 +5,8 @@ from datetime import datetime
 import os
 import csv
 
+#Class structure follows Alan Moore Textbook "Programming GUI with TKINTER"
 
-#start coding here
 class DataRecordForm(tk.Frame): #subclass Frame
     """THe input form for our widgets"""
     def __init__(self,parent,*args,**kwargs):
@@ -201,7 +201,7 @@ class LabelInput(tk.Frame):
     
         
 class Application(tk.Frame):
-    "hello world Main application"
+    "Set up of the serveer application form"
     
     def __init__(self, parent,*args,**kwargs):
         tk.Frame.__init__(self,parent,*args,**kwargs)    
@@ -225,6 +225,7 @@ class Application(tk.Frame):
         self.records_saved = 0
         
     def on_save(self):
+        #saves a new csv with the current date. All files on day will go to it. 
         datestring = datetime.today().strftime("%Y-%m-%d")
         filename = "All_Orders_{}.csv".format(datestring)
         newfile = not os.path.exists(filename)
@@ -236,7 +237,7 @@ class Application(tk.Frame):
             if newfile:
                 csvwriter.writeheader()
             csvwriter.writerow(data)
-
+            #counts the amount of records saved
         self.records_saved += 1
         self.status.set(
             "{} records saved this session".format(self.records_saved)

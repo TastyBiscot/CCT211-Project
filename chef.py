@@ -3,8 +3,11 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import csv
 
-# set up the screen
+# Code follows the lab on treeview
 class Chef(tk.Frame):
+    #Chef class takes in a csv file that is created by the server
+    #It then allows the chef to select items it has finished making
+    #Chef will hit complete and the order will be moved to a new completed csv
 
     def __init__(self, parent, controller, quecsv, Endcsv):
         tk.Frame.__init__(self, parent)
@@ -72,6 +75,7 @@ class Chef(tk.Frame):
         #self.selected = []
 
     def select(self, event):
+        #focus helps select the current item
         self.currentitem = self.treeview.focus()
         p = self.treeview.item(self.currentitem)
         if len(p['values']) >= 10:
@@ -83,14 +87,15 @@ class Chef(tk.Frame):
         print(self.treeview.item(self.curItem)['values'])
 
     def save(self):
-        """save the employees into the csv file"""
+        #Code saves selected item and sends it into new csv, then is updated and deleted from treeview
         with open(self.Endcsv, 'a', newline='') as f:
             writer = csv.writer(f)
             Id = self.treeview.item(self.currentitem)
             writer.writerow([Id["values"][0],Id["text"],Id["values"][2],Id["values"][1],Id["values"][3],Id["values"][4],Id["values"][5],Id["values"][6],Id["values"][7],Id["values"][8],Id["values"][9]])
 
+        #DELETED
         self.treeview.delete(self.currentitem)
-
+        #rewritten current form
         with open(self.quecsv,'w', newline='') as f:
             writer = csv.writer(f)
             writer.writerow(["Date","Time","Server","Table","Seated","Size","Crust","Sauce","Topping 1","Topping 2", "Topping 3"])
@@ -102,6 +107,7 @@ class Chef(tk.Frame):
         self.button.config(state=DISABLED)
 
     def read_file(self):
+        #opens and reads the csv to be put into treeview
         with open(self.quecsv,encoding='cp1252') as f:
             reader = csv.DictReader(f, delimiter=',',)
             for row in reader:
@@ -119,6 +125,7 @@ class Chef(tk.Frame):
                 self.treeview.insert("", 'end', text = a, values=(date,b,c,d,e,f,g,h,i,j))
 
     def back(self):
+        #returns
         self.button.config(state=DISABLED)
         self.controller.show_frame('Login')
 

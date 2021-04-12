@@ -13,6 +13,7 @@ from chef import Chef
 from datetime import datetime
 import os
 
+#DATA FRAME of ALL COMPILED ORDERS
 df = pd.read_csv('All_Completed_Orders.csv') #reads file stores into dataframe
 
 
@@ -29,13 +30,16 @@ df3 = DataFrame(df,columns=['Table','Time'])
 
 topping_frames = [df['Topping 1'], df['Topping 2'], df['Topping 3']]
 result = pd.concat(topping_frames).value_counts()
-#print(result)
+
+
+#Font
 LARGE_FONT= ("Verdana", 12)
 H1_FONT = ("Verdana", 24)
 H2_FONT = ("Verdana", 20)
 
 
 class FrameMoving(tk.Tk):
+    #Creats frames that when a button commands it will switch the frame with raise
 
     def __init__(self, *args, **kwargs):
 
@@ -62,7 +66,8 @@ class FrameMoving(tk.Tk):
         login = Login(container, login_model, self)
         login.grid(row=0, column=0, sticky="nsew")
         self.frames['Login'] = login
-
+        
+        #THIS IS SO THE CHEFS ALWAYS GET TICKETS FROM THE SERVER ON THE REAL TIME DATE
         datestring = datetime.today().strftime("%Y-%m-%d")
         q = "All_Orders_{}.csv".format(datestring)
         e = 'All_Completed_Orders.csv'
@@ -86,6 +91,7 @@ class FrameMoving(tk.Tk):
 
 
 class ManagerPage(tk.Frame):
+    #manager page allows for easy switching to manager duties
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
@@ -110,6 +116,7 @@ class ManagerPage(tk.Frame):
 
 
 class GraphPageOne(tk.Frame):
+    #graph one is a scatter showing which tables are used and when
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -140,7 +147,7 @@ class GraphPageOne(tk.Frame):
 
 
 class GraphPageTwo(tk.Frame):
-
+    #graph two counts the amount seats each server gets
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         #label = tk.Label(self, text="Server X Seated Page", font=LARGE_FONT)
@@ -171,13 +178,14 @@ class GraphPageTwo(tk.Frame):
 
 
 class GraphPageThree(tk.Frame):
-
+    #Graph three compiles all the favourite toppings. 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         #label = tk.Label(self, text="Graph of Favourite Toppings", font=LARGE_FONT)
         #label.pack(pady=10,padx=10)
 
-
+        #Code to graph pandas into TKinter
+        
         figure3 = plt.Figure(figsize=(5,4), dpi=100)
         ax3 = figure3.add_subplot(111)
         ax3.barh(result.keys(),result, color = 'g')
@@ -203,6 +211,7 @@ class GraphPageThree(tk.Frame):
 
 
 class TreeViewPage(tk.Frame):
+    #Tree View Page. Manager can look at all orders every made
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg = 'blue')
@@ -217,18 +226,20 @@ class TreeViewPage(tk.Frame):
         button1.pack(pady=10,padx=10)
 
 class ServerPage(tk.Frame):
+    #Server page
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg = 'blue')
         label = tk.Label(self, text="Server", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
-
+        
+        #calls server application to run the form.
         app = Application(self)
         app.pack(expand=True, fill=BOTH)
 
         button1 = ttk.Button(self, text="Log Out",
                             command=lambda: controller.show_frame("Login"))
-        button1.pack()
+        button1.pack(pady=10,padx=10)
 
 class ChefPage(tk.Frame):
 

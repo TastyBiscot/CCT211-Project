@@ -4,15 +4,16 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import csv
 
-# set up the screen
+# Code follows the lab on treeview
 class CSV_Reader(tk.Frame):
+    #CSV_READER allowd the manager to browse the entire list of all completed orders.
     
     def __init__(self, parent,*args,**kwargs):
         tk.Frame.__init__(self,parent,*args,**kwargs)    
         super().__init__(parent,*args,**kwargs)    
         
         self.s = ttk.Style()
-        self.s.theme_use("clam")        
+        self.s.theme_use("clam")       #clamlife 
         self.TableMargin = Frame(self)
         self.TableMargin.pack(side= TOP,fill="both", expand = True)
         
@@ -55,6 +56,7 @@ class CSV_Reader(tk.Frame):
         self.read_file()
     
     def read_file(self):
+        #opens and converts csv to treeview
         with open("All_Orders_2021-04-10.csv",encoding='cp1252') as f:
             reader = csv.DictReader(f, delimiter=',',)
             for row in reader:
